@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -45,11 +44,15 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             onPressed: () {
               Get.defaultDialog(
-                  title: "",
+                  title: "Logout",
                   middleText: "Do you want to exit this application?",
                   cancel: MaterialButton(
                     color: AppColors.blackColor.withOpacity(0.5),
                     minWidth: 80,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                      10,
+                    )),
                     onPressed: () {
                       Get.back();
                     },
@@ -63,6 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   confirm: MaterialButton(
                       color: AppColors.blueColor.withOpacity(0.5),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                        10,
+                      )),
                       minWidth: 80,
                       onPressed: () {
                         Get.back();
@@ -87,94 +94,109 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 200,
               width: MediaQuery.of(context).size.width,
               child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.appColor.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Obx(
-                    () => Column(
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                          child: GestureDetector(
-                            onTap: () {
-                              Clipboard.setData(
-                                ClipboardData(
-                                    text:
-                                        '${randomQuoteController.quote.value.quote.toString()} -${randomQuoteController.quote.value.author.toString()}'),
-                              );
-                              Utils.toastMessage("Quote copied to clipboard");
-                            },
-                            child: Card(
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 130,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Spacer(),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      child: RichText(
-                                        softWrap: true,
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.center,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              // recognizer: TapGestureRecognizer()
-                                              //   ..onTap = () async {
-
-                                              //   },
-                                              text:
-                                                  '${randomQuoteController.quote.value.quote.toString()}',
-                                              style: TextStyle(
-                                                  color: AppColors.blackColor,
-                                                  fontSize: 12),
-                                            ),
-                                          ],
+                decoration: BoxDecoration(
+                  color: AppColors.appColor.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Obx(() {
+                  switch (randomQuoteController.RxQuoteStatus.value) {
+                    case Status.LOADING:
+                      return Center(child: CircularProgressIndicator());
+                    case Status.ERROR:
+                      return Center(
+                        child:
+                            Text(randomQuoteController.error.value.toString()),
+                      );
+                    case Status.COMPLATED:
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: GestureDetector(
+                              onTap: () {
+                                Clipboard.setData(
+                                  ClipboardData(
+                                      text:
+                                          '${randomQuoteController.quote.value.quote.toString()} -${randomQuoteController.quote.value.author.toString()}'),
+                                );
+                                Utils.toastMessage("Quote copied to clipboard");
+                              },
+                              child: Card(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 130,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8),
+                                        child: RichText(
+                                          softWrap: true,
+                                          textAlign: TextAlign.center,
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                // recognizer: TapGestureRecognizer()
+                                                //   ..onTap = () async {
+                                                //   },
+                                                text:
+                                                    '${randomQuoteController.quote.value.quote.toString()}',
+                                                style: TextStyle(
+                                                    color: AppColors.blackColor,
+                                                    fontSize: 12),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Spacer(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          bottom: 10, right: 10),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          "- ${randomQuoteController.quote.value.author.toString()}",
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              color: AppColors.blueColor,
-                                              fontSize: 14),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            bottom: 10, right: 10),
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            "- ${randomQuoteController.quote.value.author.toString()}",
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                                color: AppColors.blueColor,
+                                                fontSize: 14),
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        MaterialButton(
-                          minWidth: 100,
-                          color: AppColors.whiteColor,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                            10,
-                          )),
-                          onPressed: () {
-                            randomQuoteController.fetchNextRandomQuote();
-                          },
-                          child: Text("Genrate New"),
-                        )
-                      ],
-                    ),
-                  )),
+                          MaterialButton(
+                            minWidth: 100,
+                            color:
+                                randomQuoteController.isLoading.value == false
+                                    ? AppColors.whiteColor
+                                    : AppColors.whiteColor.withOpacity(0.6),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                              10,
+                            )),
+                            onPressed: () {
+                              randomQuoteController.isLoading.value == false
+                                  ? randomQuoteController.fetchNextRandomQuote()
+                                  : null;
+                            },
+                            child: Text("Genrate New"),
+                          )
+                        ],
+                      );
+                  }
+                }),
+              ),
             ),
             SizedBox(
               height: 10,

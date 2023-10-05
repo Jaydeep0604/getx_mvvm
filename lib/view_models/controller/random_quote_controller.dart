@@ -9,6 +9,8 @@ class RandomQuoteController extends GetxController {
   final RxQuoteStatus = Status.LOADING.obs;
   final quote = RandomQuoteModel().obs;
 
+  RxBool isLoading = false.obs;
+
   RxString error = ''.obs;
   RxSetRandomQuote(RandomQuoteModel _value) => quote.value = _value;
   RxSetQuoteStatus(Status _value) => RxQuoteStatus.value = _value;
@@ -27,13 +29,16 @@ class RandomQuoteController extends GetxController {
   }
 
   void fetchNextRandomQuote() {
-    RxSetQuoteStatus(Status.LOADING);
+    isLoading = true.obs;
+    // RxSetQuoteStatus(Status.LOADING);
     repo.randomQuoteApi().then((value) {
       RxSetQuoteStatus(Status.COMPLATED);
+      isLoading = false.obs;
       RxSetRandomQuote(value);
     }).onError((error, stackTrace) {
       print(error);
       print(stackTrace);
+      isLoading = false.obs;
       RxSetError(error.toString());
       RxSetQuoteStatus(Status.ERROR);
     });
