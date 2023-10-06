@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:getx_mvvm/languages/localization.dart';
 import 'package:getx_mvvm/resources/colors/colors.dart';
 import 'package:getx_mvvm/view_models/splash_services.dart';
 
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: AppColors.appColor,
       body: Center(
         child: Text(
-          "Hello".tr,
+          "${AppLocalization.of(context)?.getTranslatedValue("hello")}",
           style: TextStyle(fontSize: 18, color: AppColors.whiteColor),
         ),
       ),

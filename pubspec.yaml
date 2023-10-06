@@ -36,8 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   shared_preferences: ^2.2.1
-  http: ^1.1.0
+  http: ^0.13.0
   fluttertoast: ^8.2.2
+  translator:
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +59,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -65,6 +70,9 @@ flutter:
     - assets/animations/
     - assets/icons/
     - assets/images/
+    - assets/lang/en.json
+    - assets/lang/gu.json
+    # - lib/languages/hi.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

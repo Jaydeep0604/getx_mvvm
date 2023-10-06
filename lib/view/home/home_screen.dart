@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/data/response/status.dart';
+import 'package:getx_mvvm/languages/localization.dart';
 import 'package:getx_mvvm/resources/colors/colors.dart';
 import 'package:getx_mvvm/resources/components/internet_exception_widget.dart';
 import 'package:getx_mvvm/resources/routes/routes_name.dart';
 import 'package:getx_mvvm/utils/utils.dart';
+import 'package:getx_mvvm/view/login/language.dart';
 import 'package:getx_mvvm/view_models/controller/home_controller.dart';
 import 'package:getx_mvvm/view_models/controller/random_quote_controller.dart';
 import 'package:getx_mvvm/view_models/controller/user_preferance_controller.dart';
@@ -21,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   UserPreferance userPreferance = UserPreferance();
   final homeController = Get.put(HomeController());
   final randomQuoteController = Get.put(RandomQuoteController());
+  late Locale? locale;
   void initState() {
     homeController.userListApi();
     randomQuoteController.fetchNextRandomQuote();
@@ -37,9 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomeScreen"),
+        title:
+            Text("${AppLocalization.of(context)?.getTranslatedValue("home")}"),
         automaticallyImplyLeading: false,
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Get.to(LanguageScreen());
+          },
+          icon: Icon(Icons.abc),
+        ),
         actions: [
           IconButton(
             onPressed: () {
