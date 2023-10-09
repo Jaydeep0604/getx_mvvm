@@ -7,5 +7,10 @@
     "no":"No",
     "english":"English",
     "gujarati":"Gujarati",
-    "language":"Language"
+    "language":"Language",
+    "choose_your_language":"Choose Your Language",
+    "genrate_new":"Genrate New",
+    "no_internet":"No internet",
+    "do_you_want_to_exit_this_application?":"Do you want to exit this application?",
+    "quote_copied_to_clipboard":"Quote copied to clipboard"
 }

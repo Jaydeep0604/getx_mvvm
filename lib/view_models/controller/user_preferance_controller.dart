@@ -33,42 +33,68 @@ class UserPreferance extends GetxController {
 
   Future<String?> getLanguage() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
+    String? lang;
     try {
-      String langCode = await preferences.getString(LANGUAGE_CODE) ?? ENGLISH;
-      return langCode;
+      lang = preferences.getString("lang");
+      return lang;
     } catch (e) {
       return null;
     }
   }
 
-  Future<Locale> setLanguage(String langCode) async {
+  Future<bool> setLanguage(String langCode) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString(LANGUAGE_CODE, langCode);
-    return _locale(langCode);
-    // String? lang;
-    // try {
-    //   lang = await preferences.getString("lang");
-    // } catch (e) {
-    //   print(e.toString());
-    // }
-    // if (lang != null) {
-    //   preferences.remove("lang");
-    // }
-    // bool isSetLang = await preferences.setString("lang", langCode);
-    // return isSetLang;
+    String? lang;
+    try {
+      lang = preferences.getString("lang");
+    } catch (e) {
+      print(e.toString());
+    }
+    if (lang != null) {
+      preferences.remove("lang");
+    }
+    bool isSetLang = await preferences.setString("lang", langCode);
+    return isSetLang;
   }
 
-  Locale _locale(String langCode) {
-    switch (langCode) {
-      case ENGLISH:
-        return Locale(ENGLISH, "US");
-      case GUJARATI:
-        return Locale(GUJARATI, "IN");
-      default:
-        return Locale(ENGLISH, "US");
-    }
-  }
+  // Future<String?> getLanguage() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+
+  //   try {
+  //     String langCode = await preferences.getString(LANGUAGE_CODE) ?? ENGLISH;
+  //     return langCode;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
+
+  // Future<Locale> setLanguage(String langCode) async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   await preferences.setString(LANGUAGE_CODE, langCode);
+  //   return _locale(langCode);
+  //   // String? lang;
+  //   // try {
+  //   //   lang = await preferences.getString("lang");
+  //   // } catch (e) {
+  //   //   print(e.toString());
+  //   // }
+  //   // if (lang != null) {
+  //   //   preferences.remove("lang");
+  //   // }
+  //   // bool isSetLang = await preferences.setString("lang", langCode);
+  //   // return isSetLang;
+  // }
+
+  // Locale _locale(String langCode) {
+  //   switch (langCode) {
+  //     case ENGLISH:
+  //       return Locale(ENGLISH, "US");
+  //     case GUJARATI:
+  //       return Locale(GUJARATI, "IN");
+  //     default:
+  //       return Locale(ENGLISH, "US");
+  //   }
+  // }
 }
 
 UserPreferance userPreferance = UserPreferance();

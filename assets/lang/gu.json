@@ -1,11 +1,16 @@
 {
     "home":"ઘર",
-    "hello":"Ghello",
+    "hello":"નમસ્તે",
     "login":"પ્રવેશ કરો",
     "logout":"લૉગ આઉટ",
     "yes":"હા",
     "no":"ના",
-    "english":"Angreji",
-    "gujarati":"Guzrati",
-    "language":"Bhasha"
+    "english":"English",
+    "gujarati":"ગુજરાતી",
+    "language":"ભાષા",
+    "choose_your_language":"તમારી ભાષા પસંદ કરો",
+    "genrate_new":"નવું જનરેટ કરો",
+    "no_internet":"ઇન્ટરનેટ નથી",
+    "do_you_want_to_exit_this_application?":"શું તમે આ એપ્લિકેશનમાંથી બહાર નીકળવા માંગો છો?",
+    "quote_copied_to_clipboard":"ક્વોટ ક્લિપબોર્ડ પર કૉપિ કર્યું"
 }
