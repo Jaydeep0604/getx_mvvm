@@ -11,6 +11,7 @@ import 'package:getx_mvvm/view/login/language.dart';
 import 'package:getx_mvvm/view_models/controller/home_controller.dart';
 import 'package:getx_mvvm/view_models/controller/random_quote_controller.dart';
 import 'package:getx_mvvm/view_models/controller/user_preferance_controller.dart';
+import 'package:translator/translator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   UserPreferance userPreferance = UserPreferance();
   final homeController = Get.put(HomeController());
   final randomQuoteController = Get.put(RandomQuoteController());
-  late Locale? locale;
+  final translator = GoogleTranslator();
+  String? data;
+
+  // late Locale? locale;
   void initState() {
     homeController.userListApi();
     randomQuoteController.fetchNextRandomQuote();

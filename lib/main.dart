@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx_mvvm/languages/localization.dart';
 import 'package:getx_mvvm/resources/routes/routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:getx_mvvm/services/app_translator.dart';
 import 'package:getx_mvvm/view_models/controller/user_preferance_controller.dart';
 
 void main() async {
@@ -12,13 +13,10 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(MyApp(
-    
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  
   MyApp({Key? key}) : super(key: key);
 
   static void setLocale(BuildContext context, Locale newLocale) {
@@ -36,13 +34,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
+  late AppTranslator appTranslator;
 
   @override
   void didChangeDependencies() {
     userPreferance.getLanguage().then((locale) {
-        setState(() {
-          _locale = Locale(locale!);
-        });
+      setState(() {
+        _locale = Locale(locale!);
+      });
+      appTranslator = AppTranslator(locale: _locale!);
+      print(appTranslator.locale);
       print("this is locale $locale");
     });
 
@@ -56,17 +57,23 @@ class _MyAppState extends State<MyApp> {
         _locale = Locale('en', "US");
       } else if (lang == 'gu') {
         _locale = Locale('gu', "IN");
+      } else if (lang == 'hi') {
+        _locale = Locale('hi', "IN");
       }
-      // translator = AppTranslator(locale: _locale!);
+      appTranslator = AppTranslator(locale: _locale!);
+      print("first else============================================");
     } else {
-      // translator = AppTranslator(locale: _locale!);
+      appTranslator = AppTranslator(locale: _locale!);
+      print("last else===============================================");
     }
   }
 
-  void setLocale(Locale locale) {
+  void setLocale(Locale locale) async {
     setState(() {
       _locale = locale;
     });
+    appTranslator = await AppTranslator(locale: _locale!);
+    print("${appTranslator.locale}========================================");
   }
 
   @override
@@ -88,6 +95,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: [
         Locale('en', 'US'),
         Locale('gu', 'IN'),
+        Locale('hi', 'IN'),
       ],
       locale: _locale,
     );

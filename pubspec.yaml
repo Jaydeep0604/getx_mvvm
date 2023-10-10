@@ -72,7 +72,7 @@ flutter:
     - assets/images/
     - assets/lang/en.json
     - assets/lang/gu.json
-    # - lib/languages/hi.json
+    - assets/lang/hi.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

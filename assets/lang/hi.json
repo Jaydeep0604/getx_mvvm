@@ -1,0 +1,16 @@
+{
+    "home":"घर",
+    "hello":"नमस्ते",
+    "login":"लॉग इन करें",
+    "logout":"लॉग आउट",
+    "yes":"हाँ",
+    "no":"नहीं",
+    "english":"English",
+    "gujarati":"ગુજરાતી",
+    "language":"भाषा",
+    "choose_your_language":"अपनी भाषा चुनें",
+    "genrate_new":"नया उत्पन्न करें",
+    "no_internet":"कोई इंटरनेट नहीं",
+    "do_you_want_to_exit_this_application?":"क्या आप इस एप्लिकेशन से बाहर निकलना चाहते हैं?",
+    "quote_copied_to_clipboard":"उद्धरण क्लिपबोर्ड पर कॉपी किया गया"
+}

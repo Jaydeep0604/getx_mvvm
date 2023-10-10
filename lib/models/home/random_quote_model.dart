@@ -1,7 +1,11 @@
+import 'package:getx_mvvm/services/app_translator.dart';
+
 class RandomQuoteModel {
   String? author;
   String? quote;
 
+  Future<String> get getName async =>
+      await AppTranslator.instance.translate(quote!);
   RandomQuoteModel({this.author, this.quote});
 
   RandomQuoteModel.fromJson(Map<String, dynamic> json) {
