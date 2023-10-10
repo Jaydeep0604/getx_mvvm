@@ -58,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             onPressed: () {
               Get.defaultDialog(
-                  title: "Logout",
-                  middleText: "Do you want to exit this application?",
+                  title: "${AppLocalization.of(context)?.getTranslatedValue("logout")}",
+                  middleText: "${AppLocalization.of(context)?.getTranslatedValue("do_you_want_to_exit_this_application?")}",
                   cancel: MaterialButton(
                     color: AppColors.blackColor.withOpacity(0.5),
                     minWidth: 80,
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Get.back();
                     },
                     child: Text(
-                      "No",
+                      "${AppLocalization.of(context)?.getTranslatedValue("no")}",
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               RouteName.loginScreen, (route) => false);
                         });
                       },
-                      child: Text("Yes")));
+                      child: Text("${AppLocalization.of(context)?.getTranslatedValue("yes")}")));
             },
             icon: Icon(
               Icons.logout_outlined,
@@ -134,7 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       text:
                                           '${randomQuoteController.quote.value.quote.toString()} -${randomQuoteController.quote.value.author.toString()}'),
                                 );
-                                Utils.toastMessage("Quote copied to clipboard");
+                                Utils.toastMessage(
+                                    "${AppLocalization.of(context)?.getTranslatedValue("quote_copied_to_clipboard")}");
                               },
                               child: Card(
                                 child: Container(
@@ -204,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? randomQuoteController.fetchNextRandomQuote()
                                   : null;
                             },
-                            child: Text("Genrate New"),
+                            child: Text("${AppLocalization.of(context)?.getTranslatedValue("genrate_new")}"),
                           )
                         ],
                       );

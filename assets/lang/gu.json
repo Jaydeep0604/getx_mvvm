@@ -6,11 +6,17 @@
     "yes":"હા",
     "no":"ના",
     "english":"English",
+    "hindi":"हिंदी",
     "gujarati":"ગુજરાતી",
     "language":"ભાષા",
     "choose_your_language":"તમારી ભાષા પસંદ કરો",
     "genrate_new":"નવું જનરેટ કરો",
     "no_internet":"ઇન્ટરનેટ નથી",
     "do_you_want_to_exit_this_application?":"શું તમે આ એપ્લિકેશનમાંથી બહાર નીકળવા માંગો છો?",
-    "quote_copied_to_clipboard":"ક્વોટ ક્લિપબોર્ડ પર કૉપિ કર્યું"
+    "quote_copied_to_clipboard":"ક્વોટ ક્લિપબોર્ડ પર કૉપિ કર્યું",
+    "spanish":"Spanish",
+    "email":"ઈમેલ",
+    "enter_email":"ઈમેલ દાખલ કરો",
+    "password":"પાસવર્ડ",
+    "enter_password":"પાસવર્ડ દાખલ કરો"
 }

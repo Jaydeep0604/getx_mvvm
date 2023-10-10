@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    
+
     userPreferance.getLanguage().then((locale) {
       if (locale != null) {
         setState(() {
@@ -67,6 +67,8 @@ class _MyAppState extends State<MyApp> {
         _locale = Locale('gu', "IN");
       } else if (lang == 'hi') {
         _locale = Locale('hi', "IN");
+      }else if (lang == 'es') {
+        _locale = Locale('es', "ES");
       }
       appTranslator = AppTranslator(locale: _locale!);
       print("first else");
@@ -104,6 +106,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en', 'US'),
         Locale('gu', 'IN'),
         Locale('hi', 'IN'),
+        Locale('es', "ES"),
       ],
       locale: _locale,
     );

@@ -1,0 +1,22 @@
+{
+    "home":"Hogar",
+    "hello":"Hola",
+    "login":"Acceso",
+    "logout":"Cerrar sesión",
+    "yes":"Sí",
+    "no":"No",
+    "english":"English",
+    "hindi":"hindi",
+    "gujarati":"Gujarati",
+    "language":"Idioma",
+    "choose_your_language":"Elige tu idioma",
+    "genrate_new":"Generar nueva",
+    "no_internet":"Sin internet",
+    "do_you_want_to_exit_this_application?":"Quieres salir de esta aplicación?",
+    "quote_copied_to_clipboard":"Cita copiada al portapapeles",
+    "spanish":"Española",
+    "email":"Correo electrónico",
+    "enter_email":"Ingrese correo electrónico",
+    "password":"Contraseña",
+    "enter_password":"Introducir la contraseña"
+}
