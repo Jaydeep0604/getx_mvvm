@@ -62,12 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text(
           "${AppLocalization.of(context)!.getTranslatedValue("login")}",
         ),
-        leading: IconButton(
-          onPressed: () {
-            Get.to(LanguageScreen());
-          },
-          icon: Icon(Icons.abc),
-        ),
         actions: [
           Container(
             height: 30,
@@ -133,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 5,
                   ),
                   Text(
-                    "${locale?.languageCode == 'en' ? 'English' : locale?.languageCode == 'hi' ? 'Hindi' : 'Gujarati'}",
+                    "${locale?.languageCode == 'en' ? 'English' : locale?.languageCode == 'hi' ? 'Hindi' : locale?.languageCode == 'gu' ? 'Gujarati' : 'English'}",
                     style: TextStyle(fontSize: 14),
                   ),
                   Icon(

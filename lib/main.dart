@@ -38,16 +38,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void didChangeDependencies() {
-    userPreferance.getLanguage().then((locale) {
-      setState(() {
-        _locale = Locale(locale!);
-      });
-      appTranslator = AppTranslator(locale: _locale!);
-      print(appTranslator.locale);
-      print("this is locale $locale");
-    });
-
     super.didChangeDependencies();
+    
+    userPreferance.getLanguage().then((locale) {
+      if (locale != null) {
+        setState(() {
+          _locale = Locale(locale);
+          appTranslator = AppTranslator(locale: _locale!);
+        });
+        print(appTranslator.locale);
+        print("this locale is $locale");
+      } else {
+        print("Stored language is null. Using default language.");
+        setState(() {
+          _locale = Locale('en', 'US'); // Set a default locale.
+          appTranslator = AppTranslator(locale: _locale!);
+        });
+      }
+    });
   }
 
   void setLang() async {
@@ -61,10 +69,10 @@ class _MyAppState extends State<MyApp> {
         _locale = Locale('hi', "IN");
       }
       appTranslator = AppTranslator(locale: _locale!);
-      print("first else============================================");
+      print("first else");
     } else {
       appTranslator = AppTranslator(locale: _locale!);
-      print("last else===============================================");
+      print("last else");
     }
   }
 
@@ -73,7 +81,7 @@ class _MyAppState extends State<MyApp> {
       _locale = locale;
     });
     appTranslator = await AppTranslator(locale: _locale!);
-    print("${appTranslator.locale}========================================");
+    print("new locale is ${appTranslator.locale}");
   }
 
   @override
